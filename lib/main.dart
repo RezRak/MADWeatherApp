@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            SizedBox(height: 16),
+            SizedBox(height: 14),
             
             ElevatedButton(
               onPressed: () {updateInfo(_controller.text);}, 
