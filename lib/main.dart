@@ -55,7 +55,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
+  TextEditingController _controller = TextEditingController();
+
+  String userCity = '';
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +96,36 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
+            RichText(
+              text: TextSpan(
+                style: TextStyle(fontSize: 16.0, color: Colors.black),
+                children: [
+                  TextSpan(
+                    text: 'City: \n',
+                    
+                  ),
+                  TextSpan(
+                    text: 'Temperature: \n',
+                    
+                  ),
+                  TextSpan(
+                    text: 'Weather Condition: \n',
+                   
+                  ),
+                ],
+              ),
+            ),
+          
+            TextFormField(
+              controller: _controller,
+              decoration: InputDecoration(
+                hintText: 'Fetch Weather'
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {userCity = _controller.text;}, 
+              child: Text('Submit')
+            ),
           ],
         ),
       ),
