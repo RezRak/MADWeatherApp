@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -58,6 +60,17 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _controller = TextEditingController();
 
   String userCity = '';
+  int temperature = 0;
+  String weatherCondition = '';
+  var wConditions = ["Sunny", "Cloudy", "Rainy"];
+
+  updateInfo(userCity) {
+    setState(() {
+      this.userCity = userCity;
+      temperature = Random().nextInt(15) + 15;
+      weatherCondition = wConditions[Random().nextInt(wConditions.length)];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,15 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 16.0, color: Colors.black),
                 children: [
                   TextSpan(
-                    text: 'City: \n',
+                    text: 'City: $userCity\n',
                     
                   ),
                   TextSpan(
-                    text: 'Temperature: \n',
+                    text: 'Temperature: $temperature°C\n',
                     
                   ),
                   TextSpan(
-                    text: 'Weather Condition: \n',
+                    text: 'Weather Condition: $weatherCondition\n',
                    
                   ),
                 ],
@@ -122,8 +135,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 hintText: 'Fetch Weather'
               ),
             ),
+
+            SizedBox(height: 16),
+            
             ElevatedButton(
-              onPressed: () {userCity = _controller.text;}, 
+              onPressed: () {updateInfo(_controller.text);}, 
               child: Text('Submit')
             ),
           ],
